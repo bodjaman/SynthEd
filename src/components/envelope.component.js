@@ -12,23 +12,9 @@ export default class Envelope extends Component {
             type="range"
             id="attack"
             name="attack"
+            min="0.1"
+            max="6.1"
             onChange={this.props.handleAttack}
-          />
-          <br />
-          <label htmlFor="sustain">Sustain: </label>
-          <input
-            type="range"
-            id="sustain"
-            name="sustain"
-            onChange={this.props.handleSustain}
-          />
-          <br />
-          <label htmlFor="decay">Decay: </label>
-          <input
-            type="range"
-            id="decay"
-            name="decay"
-            onChange={this.props.handleDecay}
           />
           <br />
           <label htmlFor="release">Release: </label>
@@ -36,6 +22,8 @@ export default class Envelope extends Component {
             type="range"
             id="release"
             name="release"
+            min="0.1"
+            max="6.1"
             onChange={this.props.handleRelease}
           />
         </form>
