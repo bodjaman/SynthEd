@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Synth } from "tone";
+import { Synth, Filter } from "tone";
 import Oscillator from "./components/oscillator.component";
 import Envelope from "./components/envelope.component";
-import Filter from "./components/filter.component";
+import FilterComponent from "./components/filter.component";
+
 import "./App.css";
 
 export default class App extends Component {
@@ -12,12 +13,12 @@ export default class App extends Component {
       waveform: "",
       attack: "",
       release: "",
-      filterType: "",
-      cutoff: "",
+      filterType: "highpass",
+      cutoff: "100",
       resonance: "",
       level: "",
     };
-
+    this.filter = new Filter();
     this.synth = new Synth().toMaster();
   }
 
@@ -69,9 +70,14 @@ export default class App extends Component {
         });
         break;
       case "level":
-        this.setState({
-          level: event.target.value,
-        });
+        this.setState(
+          {
+            level: event.target.value - 30,
+          },
+          () => {
+            this.synth.volume.value = this.state.level;
+          }
+        );
         break;
       default:
         return;
@@ -125,7 +131,7 @@ export default class App extends Component {
             handleAttack={this.paramChangeHandler}
             handleRelease={this.paramChangeHandler}
           />
-          <Filter
+          <FilterComponent
             handleFilterType={this.paramChangeHandler}
             handleCutoff={this.paramChangeHandler}
             handleResonance={this.paramChangeHandler}
@@ -136,10 +142,12 @@ export default class App extends Component {
               type="range"
               id="level"
               name="level"
+              max="30"
               onChange={this.paramChangeHandler}
             />
           </div>
         </div>
+        <p>Press keys D–L to play</p>
       </div>
     );
   }

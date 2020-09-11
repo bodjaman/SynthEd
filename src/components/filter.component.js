@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class Filter extends Component {
+export default class FilterComponent extends Component {
   render() {
     return (
       <div className="synthSection">
@@ -11,7 +11,7 @@ export default class Filter extends Component {
             type="radio"
             id="highPass"
             name="filterType"
-            value="high-pass"
+            value="highpass"
             onChange={this.props.handleFilterType}
           />
           <label htmlFor="highPass">High-pass</label>
@@ -20,7 +20,7 @@ export default class Filter extends Component {
             type="radio"
             id="lowPass"
             name="filterType"
-            value="low-pass"
+            value="lowpass"
             onChange={this.props.handleFilterType}
           />
           <label htmlFor="lowPass">Low-pass</label>
